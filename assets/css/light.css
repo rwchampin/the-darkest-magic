@@ -1,0 +1,37 @@
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-heading-light: #2d2d2d;
+    --color-text-light: #222222;
+    --color-background-light: #f5f5f5;
+     --window-gradient-top: top: 0;
+        background: linear-gradient(to bottom, black, rgba(0, 0, 0, 0));
+     --window-gradient-bottom: bottom: 0;
+        background: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+        
+  }
+  h1,
+  .title {
+    color: var(--color-heading-light);
+  }
+  body,
+  p,
+  div {
+    color: var(--color-text-dark);
+  }
+  #smooth-content {
+    background-color: var(--color-background-light);
+  }
+
+  #smooth-content::before {
+    top: 0;
+    background:var(--window-gradient-top) !important;
+  }
+  #smooth-content::after {
+    bottom: 0;
+    background:var(--window-gradient-bottom) !important;
+  }
+  .super-text {
+    color: black;
+}
+
+}

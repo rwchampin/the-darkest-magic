@@ -1,0 +1,451 @@
+
+ .tp-dfw {
+    z-index: 900 !important;
+    position: fixed !important;
+ }
+:root {
+  --tp-base-background-color: hsla(0, 0%, 10%, 0.8);
+  --tp-base-shadow-color: hsla(0, 0%, 0%, 0.2);
+  --tp-button-background-color: hsla(0, 0%, 80%, 1);
+  --tp-button-background-color-active: hsla(0, 0%, 100%, 1);
+  --tp-button-background-color-focus: hsla(0, 0%, 95%, 1);
+  --tp-button-background-color-hover: hsla(0, 0%, 85%, 1);
+  --tp-button-foreground-color: hsla(0, 0%, 0%, 0.8);
+  --tp-container-background-color: hsla(0, 0%, 0%, 0.3);
+  --tp-container-background-color-active: hsla(0, 0%, 0%, 0.6);
+  --tp-container-background-color-focus: hsla(0, 0%, 0%, 0.5);
+  --tp-container-background-color-hover: hsla(0, 0%, 0%, 0.4);
+  --tp-container-foreground-color: hsla(0, 0%, 100%, 0.5);
+  --tp-groove-foreground-color: hsla(0, 0%, 0%, 0.2);
+  --tp-input-background-color: hsla(0, 0%, 0%, 0.3);
+  --tp-input-background-color-active: hsla(0, 0%, 0%, 0.6);
+  --tp-input-background-color-focus: hsla(0, 0%, 0%, 0.5);
+  --tp-input-background-color-hover: hsla(0, 0%, 0%, 0.4);
+  --tp-input-foreground-color: hsla(0, 0%, 100%, 0.5);
+  --tp-label-foreground-color: hsla(0, 0%, 100%, 0.5);
+  --tp-monitor-background-color: hsla(0, 0%, 0%, 0.3);
+  --tp-monitor-foreground-color: hsla(0, 0%, 100%, 0.3);
+}
+    :root, .leva-t-kqjEjX {
+        --leva-colors-elevation1: #292d39;
+        --leva-colors-elevation2: #181c20;
+        --leva-colors-elevation3: #373c4b;
+        --leva-colors-accent1: #0066dc;
+        --leva-colors-accent2: #007bff;
+        --leva-colors-accent3: #3c93ff;
+        --leva-colors-highlight1: #535760;
+        --leva-colors-highlight2: #8c92a4;
+        --leva-colors-highlight3: #fefefe;
+        --leva-colors-vivid1: #ffcc00;
+        --leva-colors-folderWidgetColor: var(--leva-colors-highlight2);
+        --leva-colors-folderTextColor: var(--leva-colors-highlight3);
+        --leva-colors-toolTipBackground: var(--leva-colors-highlight3);
+        --leva-colors-toolTipText: var(--leva-colors-elevation2);
+        --leva-radii-xs: 2px;
+        --leva-radii-sm: 3px;
+        --leva-radii-lg: 10px;
+        --leva-space-xs: 3px;
+        --leva-space-sm: 6px;
+        --leva-space-md: 10px;
+        --leva-space-rowGap: 7px;
+        --leva-space-colGap: 7px;
+        --leva-fonts-mono: ui-monospace, SFMono-Regular, Menlo, "Roboto Mono", monospace;
+        --leva-fonts-sans: system-ui, sans-serif;
+        --leva-fontSizes-root: 11px;
+        --leva-fontSizes-toolTip: var(--leva-fontSizes-root);
+        --leva-sizes-rootWidth: 280px;
+        --leva-sizes-controlWidth: 160px;
+        --leva-sizes-numberInputMinWidth: 38px;
+        --leva-sizes-scrubberWidth: 8px;
+        --leva-sizes-scrubberHeight: 16px;
+        --leva-sizes-rowHeight: 24px;
+        --leva-sizes-folderTitleHeight: 20px;
+        --leva-sizes-checkboxSize: 16px;
+        --leva-sizes-joystickWidth: 100px;
+        --leva-sizes-joystickHeight: 100px;
+        --leva-sizes-colorPickerWidth: var(--leva-sizes-controlWidth);
+        --leva-sizes-colorPickerHeight: 100px;
+        --leva-sizes-imagePreviewWidth: var(--leva-sizes-controlWidth);
+        --leva-sizes-imagePreviewHeight: 100px;
+        --leva-sizes-monitorHeight: 60px;
+        --leva-sizes-titleBarHeight: 39px;
+        --leva-shadows-level1: 0 0 9px 0 #00000088;
+        --leva-shadows-level2: 0 4px 14px #00000033;
+        --leva-borderWidths-root: 0px;
+        --leva-borderWidths-input: 1px;
+        --leva-borderWidths-focus: 1px;
+        --leva-borderWidths-hover: 1px;
+        --leva-borderWidths-active: 1px;
+        --leva-borderWidths-folder: 1px;
+        --leva-fontWeights-label: normal;
+        --leva-fontWeights-folder: normal;
+        --leva-fontWeights-button: normal;
+    }
+
+
+ 
+    @keyframes leva-k-eTTPvU {
+        0% {
+            opacity: 0;
+        }
+
+        10% {
+            opacity: 0.8;
+        }
+
+        100% {
+            opacity: 0.3;
+        }
+    }
+
+    .leva__panel__dragged {
+        -webkit-user-drag: none;
+        user-select: none;
+    }
+
+    .leva__panel__dragged input {
+        user-select: none;
+    }
+
+    .leva__panel__dragged * {
+        cursor: ew-resize !important;
+    }
+
+:root {
+  --tp-base-background-color: hsla(0, 0%, 10%, 0.8);
+  --tp-base-shadow-color: hsla(0, 0%, 0%, 0.2);
+  --tp-button-background-color: hsla(0, 0%, 80%, 1);
+  --tp-button-background-color-active: hsla(0, 0%, 100%, 1);
+  --tp-button-background-color-focus: hsla(0, 0%, 95%, 1);
+  --tp-button-background-color-hover: hsla(0, 0%, 85%, 1);
+  --tp-button-foreground-color: hsla(0, 0%, 0%, 0.8);
+  --tp-container-background-color: hsla(0, 0%, 0%, 0.3);
+  --tp-container-background-color-active: hsla(0, 0%, 0%, 0.6);
+  --tp-container-background-color-focus: hsla(0, 0%, 0%, 0.5);
+  --tp-container-background-color-hover: hsla(0, 0%, 0%, 0.4);
+  --tp-container-foreground-color: hsla(0, 0%, 100%, 0.5);
+  --tp-groove-foreground-color: hsla(0, 0%, 0%, 0.2);
+  --tp-input-background-color: hsla(0, 0%, 0%, 0.3);
+  --tp-input-background-color-active: hsla(0, 0%, 0%, 0.6);
+  --tp-input-background-color-focus: hsla(0, 0%, 0%, 0.5);
+  --tp-input-background-color-hover: hsla(0, 0%, 0%, 0.4);
+  --tp-input-foreground-color: hsla(0, 0%, 100%, 0.5);
+  --tp-label-foreground-color: hsla(0, 0%, 100%, 0.5);
+  --tp-monitor-background-color: hsla(0, 0%, 0%, 0.3);
+  --tp-monitor-foreground-color: hsla(0, 0%, 100%, 0.3);
+}
+
+
+    .dg, .dg li.title, ul, ul li {
+        position: relative;
+        font-family: var(--leva-fonts-mono);
+        font-size: var(--leva-fontSizes-root);
+        color: var(--leva-colors-rootText);
+        background-color:var(--leva-colors-elevation1) !important;
+        background: var(--leva-colors-elevation1) !important;
+
+         }
+
+    .dg::selection {
+        background-color: var(--leva-colors-accent2);
+    }
+
+    .dg {
+        display: flex;
+                  align-items: stretch;
+        justify-content: space-between;
+        height: var(--leva-sizes-titleBarHeight);
+    }
+
+    .leva-c-ctBOWy {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    .leva-c-ctBOWy > svg {
+        fill: var(--leva-colors-highlight1);
+        transition: transform 350ms ease 0s, fill 250ms ease 0s;
+    }
+
+    .leva-c-ctBOWy:hover > svg {
+        fill: var(--leva-colors-highlight3);
+    }
+
+    .leva-c-cHvNmv {
+        fill: currentcolor;
+        transition: transform 350ms ease 0s, fill 250ms ease 0s;
+    }
+
+    .leva-c-iLtnIm {
+        touch-action: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1 1 0%;
+    }
+
+    .leva-c-iLtnIm > svg {
+        fill: var(--leva-colors-highlight1);
+    }
+
+    .leva-c-iLtnIm {
+        color: var(--leva-colors-highlight1);
+    }
+
+    .leva-c-fxiFTg {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        transition: height 250ms ease 0s;
+        color: var(--leva-colors-highlight3);
+        padding-left: var(--leva-space-md);
+    }
+
+    .leva-c-fxiFTg > .leva-c-ctBOWy {
+        height: 30px;
+    }
+
+    .leva-c-iYYzmZ {
+        outline: none;
+        font-weight: inherit;
+        color: inherit;
+        font-family: inherit;
+        border: none;
+        appearance: none;
+        flex: 1 1 0%;
+        position: relative;
+        height: 30px;
+        width: 100%;
+        background-color: transparent;
+        font-size: 10px;
+        border-radius: var(--leva-radii-root);
+    }
+
+    .leva-c-iYYzmZ::placeholder {
+        color: var(--leva-colors-highlight2);
+    }
+
+    .leva-c-hBtFDW {
+        position: relative;
+        background: var(--leva-colors-elevation2);
+        transition: height 300ms ease 0s;
+    }
+
+    .leva-c-dmsJDs {
+        position: relative;
+        display: grid;
+        grid-template-columns: 100%;
+        row-gap: var(--leva-space-rowGap);
+        transition: opacity 250ms ease 0s;
+    }
+
+    .leva-c-bDGmTT {
+        opacity: 1;
+    }
+
+    .leva-c-grzFYX {
+        position: relative;
+        z-index: 100;
+        display: grid;
+        row-gap: var(--leva-space-rowGap);
+        grid-template-rows: minmax(var(--leva-sizes-rowHeight), max-content);
+        align-items: center;
+        color: var(--leva-colors-highlight2);
+    }
+
+    .leva-c-dmsJDs > .leva-c-grzFYX:first-of-type {
+        margin-top: var(--leva-space-rowGap);
+    }
+
+    .leva-c-dmsJDs > .leva-c-grzFYX:last-of-type {
+        margin-bottom: var(--leva-space-rowGap);
+    }
+
+    .leva-c-jzsQCy {
+        grid-template-columns: auto var(--leva-sizes-controlWidth);
+        column-gap: var(--leva-space-colGap);
+    }
+
+    .leva-c-iSkYoW {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .leva-c-iSkYoW > div {
+        margin-left: var(--leva-space-colGap);
+        padding: 0 var(--leva-space-xs);
+        opacity: 0.4;
+    }
+
+    .leva-c-iSkYoW > div:hover {
+        opacity: 0.8;
+    }
+
+    .leva-c-iSkYoW > div > svg {
+        display: none;
+        cursor: pointer;
+        width: 13px;
+        min-width: 13px;
+        height: 13px;
+        background-color: var(--leva-colors-elevation2);
+    }
+
+    .leva-c-iSkYoW:hover > div > svg {
+        display: block;
+    }
+
+    .leva-c-dKMqBT {
+        font-weight: var(--leva-fontWeights-label);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .leva-c-dKMqBT > svg {
+        display: block;
+    }
+
+    .leva-c-kXfPOu {
+        display: flex;
+        align-items: center;
+        position: relative;
+        border-radius: var(--leva-radii-sm);
+        overflow: hidden;
+        color: inherit;
+        height: var(--leva-sizes-rowHeight);
+        background-color: var(--leva-colors-elevation3);
+    }
+
+    .leva-c-kXfPOu:hover {
+        box-shadow: inset 0 0 0 var(--leva-borderWidths-hover) var(--leva-colors-accent1);
+    }
+
+    .leva-c-kXfPOu:focus-within {
+        box-shadow: 0 0 0 var(--leva-borderWidths-focus) var(--leva-colors-accent2);
+    }
+
+    .leva-c-ghmOOI {
+        outline: none;
+        font-size: inherit;
+        font-weight: inherit;
+        color: inherit;
+        font-family: inherit;
+        border: none;
+        background-color: transparent;
+        appearance: none;
+        padding: 0 var(--leva-space-sm);
+        width: 0px;
+        min-width: 0px;
+        flex: 1 1 0%;
+        height: 100%;
+    }
+
+
+--sxs {
+    --sxs: 3;
+}
+
+
+    .leva-c-kWgxhW-bCBHqk-fill-false {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        width: var(--leva-sizes-rootWidth);
+    }
+
+    .leva-c-kWgxhW-eXrJvq-flat-false {
+        border-radius: var(--leva-radii-lg);
+        box-shadow: var(--leva-shadows-level1);
+    }
+
+    .leva-c-kWgxhW-czBHep-hideTitleBar-false {
+        --leva--titleBarHeight: var(--leva-sizes-titleBarHeight);
+    }
+
+    .leva-c-hwBXYF-kbKHjH-mode-drag {
+        cursor: grab;
+    }
+
+    .leva-c-iLtnIm-bOgTWZ-drag-true {
+        touch-action: none;
+        -webkit-user-drag: none;
+        user-select: none;
+    }
+
+    .leva-c-iLtnIm-bOgTWZ-drag-true > svg {
+        transition: fill 250ms ease 0s;
+    }
+
+    .leva-c-iLtnIm-bOgTWZ-drag-true:hover {
+        color: var(--leva-colors-highlight3);
+    }
+
+    .leva-c-iLtnIm-bOgTWZ-drag-true:hover > svg {
+        fill: var(--leva-colors-highlight3);
+    }
+
+    .leva-c-fxiFTg-dbaoCM-toggled-false {
+        height: 0px;
+    }
+
+    .leva-c-dmsJDs-lpvxwm-toggled-true {
+        opacity: 1;
+        transition-delay: 250ms;
+    }
+
+    .leva-c-dmsJDs-hXSjjU-isRoot-true > div {
+        padding-left: var(--leva-space-md);
+        padding-right: var(--leva-space-md);
+    }
+
+    .leva-c-dmsJDs-hXSjjU-isRoot-true > div:first-of-type {
+        padding-top: var(--leva-space-sm);
+    }
+
+    .leva-c-dmsJDs-hXSjjU-isRoot-true > div:last-of-type {
+        padding-bottom: var(--leva-space-sm);
+    }
+
+    .leva-c-dmsJDs-hXSjjU-isRoot-true > .leva-c-PJLV:not(:first-of-type) {
+        padding-top: var(--leva-space-sm);
+        margin-top: var(--leva-space-md);
+        border-top: var(--leva-borderWidths-folder) solid var(--leva-colors-elevation1);
+    }
+
+
+--sxs {
+    --sxs: 4;
+}
+
+
+
+--sxs {
+    --sxs: 5;
+}
+
+
+    .leva-c-hBtFDW-hTGpNn-cv {
+        overflow-y: auto;
+        max-height: calc(100vh - 20px - var(--leva--titleBarHeight));
+    }
+
+    .leva-c-hBtFDW-gOvGdg-cv {
+        border-radius: var(--leva-radii-lg);
+    }
+
+
+--sxs {
+    --sxs: 6;
+}
+
+ 

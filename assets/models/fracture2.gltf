@@ -1,0 +1,45 @@
+{
+    "uri": "fracture.gltf",
+    "mimeType": "model/gltf+json",
+    "validatorVersion": "2.0.0-dev.3.8",
+    "validatedAt": "2022-07-28T02:52:29.527Z",
+    "issues": {
+        "numErrors": 1,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [
+            {
+                "code": "IO_ERROR",
+                "message": "Node Exception: Error: ENOENT: no such file or directory, open '/Users/ryanchampin/Projects/ryanthevue/src/components/fracture.bin'",
+                "severity": 0,
+                "pointer": "/buffers/0/uri"
+            }
+        ],
+        "truncated": false
+    },
+    "info": {
+        "version": "2.0",
+        "generator": "Khronos Blender glTF 2.0 exporter",
+        "resources": [
+            {
+                "pointer": "/buffers/0",
+                "mimeType": "application/gltf-buffer",
+                "storage": "external",
+                "uri": "fracture.bin"
+            }
+        ],
+        "animationCount": 0,
+        "materialCount": 1,
+        "hasMorphTargets": false,
+        "hasSkins": false,
+        "hasTextures": false,
+        "hasDefaultScene": true,
+        "drawCallCount": 46,
+        "totalVertexCount": 3292,
+        "totalTriangleCount": 1824,
+        "maxUVs": 0,
+        "maxInfluences": 0,
+        "maxAttributes": 2
+    }
+}

@@ -1,0 +1,12 @@
+:root {
+  --error-bg: linear-gradient(
+    32.11deg,
+    #752525 0%,
+    rgba(112, 29, 43, 0.734) 37.85%,
+    rgba(107, 22, 50, 0.484) 73.46%,
+    rgba(102, 15, 56, 0.24) 108.34%,
+    rgba(98, 8, 62, 0) 142.48%
+  );
+  --error-text-color: #fff;
+  --form-error-margin-bottom: 2rem;
+}

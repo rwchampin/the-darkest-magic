@@ -1,0 +1,91 @@
+/***************************************
+/**
+/** VARIABLES
+/**
+/***************************************/
+
+**:root {
+  /** PADDING **/
+  --pad-input: 16px;
+
+  --pad-inner: 52px;
+
+  /** SPACING **/
+  --gutter: 20px;
+
+  /** POSITIONING **/
+  --position-bottom-align: 88px;
+
+  /** SIZING **/
+  --elem-height: 48px;
+
+  --size-000: -0.5rem;
+  --size-00: -0.25rem;
+  --size-1: 0.25rem;
+  --size-2: 0.5rem;
+  --size-3: 1rem;
+  --size-4: 1.25rem;
+  --size-5: 1.5rem;
+  --size-6: 1.75rem;
+  --size-7: 2rem;
+  --size-8: 3rem;
+  --size-9: 4rem;
+  --size-10: 5rem;
+  --size-11: 7.5rem;
+  --size-12: 10rem;
+  --size-13: 15rem;
+  --size-14: 20rem;
+  --size-15: 30rem;
+  --size-fluid-1: clamp(0.5rem, 1vw, 1rem);
+  --size-fluid-2: clamp(1rem, 2vw, 1.5rem);
+  --size-fluid-3: clamp(1.5rem, 3vw, 2rem);
+  --size-fluid-4: clamp(2rem, 4vw, 3rem);
+  --size-fluid-5: clamp(4rem, 5vw, 5rem);
+  --size-fluid-6: clamp(5rem, 7vw, 7.5rem);
+  --size-fluid-7: clamp(7.5rem, 10vw, 10rem);
+  --size-fluid-8: clamp(10rem, 20vw, 15rem);
+  --size-fluid-9: clamp(15rem, 30vw, 20rem);
+  --size-fluid-10: clamp(20rem, 40vw, 30rem);
+}
+/** BORDERS **/
+
+:root {
+  --border-size-1: 1px;
+  --border-size-2: 2px;
+  --border-size-3: 5px;
+  --border-size-4: 10px;
+  --border-size-5: 25px;
+  --radius-1: 2px;
+  --radius-2: 5px;
+  --radius-3: 12px;
+
+  --radius-4: 1rem;
+  --radius-5: 2rem;
+  --radius-6: 4rem;
+  --radius-7: 8rem;
+  --radius-round: 1e5px;
+  --radius-blob-1: 30% 70% 70% 30%/53% 30% 70% 47%;
+  --radius-blob-2: 53% 47% 34% 66%/63% 46% 54% 37%;
+  --radius-blob-3: 37% 63% 56% 44%/49% 56% 44% 51%;
+  --radius-blob-4: 63% 37% 37% 63%/43% 37% 63% 57%;
+  --radius-blob-5: 49% 51% 48% 52%/57% 44% 56% 43%;
+  --radius-conditional-1: clamp(0px, calc(100vw - 100%) * 1e5, var(--radius-1));
+  --radius-conditional-2: clamp(0px, calc(100vw - 100%) * 1e5, var(--radius-2));
+  --radius-conditional-3: clamp(0px, calc(100vw - 100%) * 1e5, var(--radius-3));
+  --radius-conditional-4: clamp(0px, calc(100vw - 100%) * 1e5, var(--radius-4));
+  --radius-conditional-5: clamp(0px, calc(100vw - 100%) * 1e5, var(--radius-5));
+  --radius-conditional-6: clamp(0px, calc(100vw - 100%) * 1e5, var(--radius-6));
+}
+/***************************************
+/**
+/** ELEMENTS
+/**
+/***************************************/
+
+a,
+input,
+button,
+.btn,
+.link {
+  height: var(--elem-height) !important;
+}
