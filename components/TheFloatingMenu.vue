@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// import { Draggable } from 'gsap/Draggable'
-// import gsap from 'gsap'
+import { Draggable } from 'gsap/all.js'
+import gsap from 'gsap'
 const nuxtApp = useNuxtApp()
 const { $plugins, $appStore } = nuxtApp
 const links = ref([{ label: 'Home', id: 0 }, { label: 'About', id: 1 }, { label: 'Experiments', id: 2 }, { id: 3, label: 'Services' }, { id: 4, label: 'Contact' }])

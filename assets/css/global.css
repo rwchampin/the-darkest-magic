@@ -1,5 +1,9 @@
 
 @font-face {
+  font-family: "Heavenly";
+  src: url("../fonts/heavenly.otf") format("otf");
+}
+@font-face {
   font-family: "apercu light";
   src: url("../fonts/apercu-light-pro.woff2") format("woff2");
   font-weight: 300;
@@ -93,14 +97,16 @@ body,
   top: 0;
   left: 0;
 }
-.ui-canvas {
+ 
+.canvas-ui {
   position: fixed !important;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100vw !important;
+  height: 100vh !important;
   z-index: 100;
 }
+
 article,
 aside,
 details,
@@ -310,15 +316,11 @@ a,
     padding: 0 2rem;
     }
     } */
-
-#deathBlobs {
-  /* overflow: hidden; */
-  position: fixed !important;
+ .main-canvas-3d {
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100vh !important;
   width: 100vw !important;
-  z-index: 900 !important;
-}
+  height: 100vh !important;
+  z-index: 99999999999;
+ }

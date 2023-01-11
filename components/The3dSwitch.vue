@@ -46,7 +46,7 @@ onMounted(() => {
     const rectangle = new THREE.Shape()
     roundedRect(rectangle, -36, -20, 72, 40, 20)
 
-    const backgroundShape = new THREE.ExtrudeBufferGeometry(rectangle, {
+    const backgroundShape = new THREE.ExtrudeGeometry(rectangle, {
       curveSegments: 20,
       depth: 2,
       bevelEnabled: true,

@@ -4,7 +4,7 @@
 // /* eslint-disable no-undef */
 import * as THREE from 'three'
 import { FlyControls } from 'three/examples/jsm/controls/FlyControls'
-
+import { useEventListener } from '@vueuse/core'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import chalk from 'chalk'
 import { EventEmitter } from '~/utils/EventEmitter'
@@ -31,15 +31,19 @@ export default defineNuxtPlugin((nuxtApp) => {
       console.log(chalk.green.bgBlack('core:singletons:complete'))
   })
 
-  function createCoreSingletons() {
-    const canvas = document.querySelector('#main-canvas-3d')
+  function createCoreSingletons(nuxtApp) {
+    const canvas = document.querySelector('.main-canvas-3d')
     const clock = new THREE.Clock()
     const time = clock.getElapsedTime()
     const scene = new THREE.Scene()
+    if (nuxtApp.$appStore.getDebugMode) {
+      const axesHelper = new THREE.AxesHelper(100)
+      scene.add(axesHelper)
+    }
     scene.name = `CoreScene: ${time}`
     scene.background = new THREE.Color(0xF0F0F0)
-    scene.fog = new THREE.Fog(0xFFFFFF, 60, 110)
-    const perspectiveCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 10, 150)
+    scene.fog = new THREE.Fog(0xFFFFFF, 50, 500)
+    const perspectiveCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 500)
     const orthographicCamera = new THREE.OrthographicCamera(
       window.innerWidth / -2,
       window.innerWidth / 2,
@@ -48,24 +52,26 @@ export default defineNuxtPlugin((nuxtApp) => {
       10,
       150,
     )
-
+    perspectiveCamera.position.set(0, 0, 1000)
+    perspectiveCamera.lookAt(0, 0, 0)
     perspectiveCamera.name = `CoreCamera: ${time}`
     orthographicCamera.name = `CoreCamera: ${time}`
     const cameras = {
       perspective: perspectiveCamera,
       orthographic: orthographicCamera,
+      activeCamera: perspectiveCamera,
     }
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: false })
-    renderer.shadowMap.enabled = true
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap
-    renderer.physicallyCorrectLights = true
-    renderer.gammaFactor = 2.2
-    renderer.gammaOutput = true
-    renderer.outputEncoding = THREE.sRGBEncoding
+    // renderer.shadowMap.enabled = true
+    // renderer.shadowMap.type = THREE.PCFSoftShadowMap
+    // renderer.physicallyCorrectLights = true
+    // renderer.gammaFactor = 2.2
+    // renderer.gammaOutput = true
+    // renderer.outputEncoding = THREE.sRGBEncoding
     renderer.name = `CoreRenderer: ${time}`
     renderer.setSize(window.innerWidth, window.innerHeight)
 
-    const ambientLight = new THREE.AmbientLight(0xFFFFFF, 1.5)
+    const ambientLight = new THREE.AmbientLight(0xFF0000, 10.5)
     ambientLight.name = `CoreAmbientLight: ${time}`
     const pointLight = new THREE.PointLight(0xFFFFFF, 20)
     pointLight.name = `CorePointLight: ${time}`
@@ -76,7 +82,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     pointLight2.name = `CorePointLight2: ${time}`
     pointLight2.position.set(100, 100, 100)
 
-    const orbitControls = new OrbitControls(camera, renderer.domElement)
+    const orbitControls = new OrbitControls(cameras.activeCamera, renderer.domElement)
     orbitControls.name = `CoreOrbitControls: ${time}`
     orbitControls.enableDamping = true
     orbitControls.dampingFactor = 0.05
@@ -88,18 +94,30 @@ export default defineNuxtPlugin((nuxtApp) => {
     orbitControls.maxDistance = 100
     orbitControls.update()
 
-    const flyControls = new FlyControls(camera, renderer.domElement)
+    const flyControls = new FlyControls(cameras.activeCamera, renderer.domElement)
     flyControls.name = `CoreFlyControls: ${time}`
     flyControls.movementSpeed = 10
     flyControls.rollSpeed = Math.PI / 24
     flyControls.dragToLook = true
     flyControls.update()
 
+    const controls = {
+      orbitControls,
+      flyControls,
+      activeControls: orbitControls,
+    }
+
+    scene.add(perspectiveCamera, ambientLight, pointLight, pointLight2)
+    useEventListener('resize', () => {
+      cameras.perspective.aspect = window.innerWidth / window.innerHeight
+      cameras.perspective.updateProjectionMatrix()
+      renderer.setSize(window.innerWidth, window.innerHeight)
+    })
     const animate = () => {
       requestAnimationFrame(animate)
-      orbitControls.update(0.01)
-      flyControls.update(0.01)
-      renderer.render(scene, camera)
+      controls.activeControls.update(0.01)
+
+      renderer.render(scene, cameras.activeCamera)
     }
 
     animate()
@@ -114,10 +132,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       pointLight,
       pointLight2,
     }
-    SUPERGLOBAL.core.singletons.controls = {
-      orbitControls,
-      flyControls,
-    }
+    SUPERGLOBAL.core.singletons.controls = controls
     SUPERGLOBAL.core.singletons.clock = clock
 
     em.trigger('core:singletons:complete')
@@ -191,14 +206,15 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.hook('app:beforeMount', () => {
     /* your code goes here */
     nuxtApp.$appStore.appLoadingStatus.value = true
-    nuxtApp.$resources.init()
-    // createCoreSingletons(nuxtApp)
+    // nuxtApp.$resources.init()
+
     if (nuxtApp.$appStore.getDebugMode)
       console.log(chalk.blue.bgBlack('app:beforeMount'))
   })
   nuxtApp.hook('app:mounted', () => {
     /* your code goes here */
 
+    createCoreSingletons(nuxtApp)
     nuxtApp.$registerPlugins()
     // buildUI();
     nuxtApp.$appStore.appLoadingStatus.value = false

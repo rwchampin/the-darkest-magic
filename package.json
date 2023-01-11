@@ -32,6 +32,7 @@
     "gsap": "file:assets/libs/gsap.tgz",
     "naive-ui": "^2.34.3",
     "stats-js": "^1.0.1",
+    "stats.js": "^0.17.0",
     "three": "^0.148.0",
     "tweakpane": "^3.1.1",
     "unplugin-vue-components": "^0.22.12"

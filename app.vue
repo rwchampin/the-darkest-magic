@@ -31,35 +31,37 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="canvas-container">
-    <canvas id="main-canvas-2d" ref="canvas2d" class="canvas-ui" />
-    <canvas id="main-canvas-3d" ref="canvas3d" class="canvas-ui" />
-  </div>
   <NuxtLayout>
     <LazyTheDarkScrollbar />
     <LazyTheDebugger />
     <TheHeader />
-    <TheFloatingMenu />
+    <div id="canvas-container">
+      <canvas ref="canvas2d" class="canvas-ui main-canvas-2d" />
+      <canvas ref="canvas3d" class="canvas-ui main-canvas-3d" />
+    </div>
+    <ClientOnly>
+      <TheFloatingMenu />
 
-    <TheSplash />
-
+      <TheSplash />
+    </ClientOnly>
     <!-- <NuxtPage /> -->
   </NuxtLayout>
 </template>
 
-<style>
+<style scoped>
+#main-canvas-3d,
 #canvas-container {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 9999;
-  pointer-events: none;
-  background-color: blueviolet;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 100000000 !important;
+  background: orange;
 }
 html, body , #__nuxt{
   height: 100vh;
+  width: 100vw;
   margin: 0;
   padding: 0;
 }

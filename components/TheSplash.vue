@@ -2,39 +2,45 @@
 import * as THREE from 'three'
 import { useBlackEnergy } from '~~/composables/useBlackEnergy'
 import { EventEmitter } from '~/utils/EventEmitter'
+import { usePoints } from '~/particles/usePoints'
 const em = new EventEmitter()
 let scene, camera, renderer
 
-em.on('core:singltons:ready', () => {
-  scene = SUPERGLOBAL.scene
-  camera = SUPERGLOBAL.camera
-  renderer = SUPERGLOBAL.renderer
-  debugger
-  init()
-})
+const pngLogo = window.asssets
 
 const animate = () => {
   requestAnimationFrame(animate)
-  scene.children.forEach((child) => {
-    if (child instanceof THREE.Points)
-      child.rotation.y += 0.001
-  })
+  // scene.children.forEach((child) => {
+  //   if (child instanceof THREE.Points)
+  //     child.rotation.y += 0.001
+  // })
   renderer.render(scene, camera)
 }
 
 const init = () => {
   const { planet, stars, starLights } = useBlackEnergy()
-  scene.add(planet, stars, starLights, ambientLight, pointLight, pointLight2)
+  const { points } = usePoints()
+
+  scene.add(points, planet, stars, starLights, ambientLight, pointLight, pointLight2)
   animate()
 }
+em.on('core:singletons:ready', () => {
+  alert()
+  scene = SUPERGLOBAL.scene
+  camera = SUPERGLOBAL.cameras.perspective
+  renderer = SUPERGLOBAL.renderer
+  debugger
+  init()
+})
 </script>
 
 <template>
-  <!--  -->
+  <div />
+  <!-- <TheSmokeBg /> -->
 </template>
 
-<style>
-canvas {
+<style scoped>
+.canvas-ui {
   width: 100vw;
   height: 100vh;
   position: fixed !important;

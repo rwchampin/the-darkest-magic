@@ -1,7 +1,9 @@
 <script setup>
 import { useFps, useMemory } from '@vueuse/core'
 import { Pane } from 'tweakpane'
+import gsap from 'gsap'
 import { GSDevTools } from 'gsap/GSDevTools.js'
+import Stats from 'stats-js'
 
 const nuxtApp = useNuxtApp()
 const size = (v) => {
@@ -22,59 +24,69 @@ onMounted(() => {
     expanded: true,
   })
 
-  const sceneFolder = pane.addFolder({
-    title: 'Scene',
-    expanded: true,
-  })
-  sceneFolder.addInput(SUPERGLOBAL.core.singletons.scene, 'background', {
-    label: 'Background',
-  })
-  debugger
-  sceneFolder.addInput(SUPERGLOBAL.core.singletons.scene.fog, 'isFog', {
-    label: 'Scene Fog',
-  })
-  sceneFolder.addInput(SUPERGLOBAL.core.singletons.scene.fog, 'color', {
-    label: 'Color',
-  })
-  sceneFolder.addInput(SUPERGLOBAL.core.singletons.scene.fog, 'near', {
-    label: 'Near',
-  })
-  sceneFolder.addInput(SUPERGLOBAL.core.singletons.scene.fog, 'far', {
-    label: 'Far',
-  })
-  const cameraFolder = pane.addFolder({
-    title: 'Camera',
-    expanded: true,
-  })
-  cameraFolder.addInput(SUPERGLOBAL.core.singletons.camera, 'position', {
-    label: 'Position',
-  })
-  cameraFolder.addInput(SUPERGLOBAL.core.singletons.camera, 'rotation', {
-    label: 'Rotation',
-  })
-  cameraFolder.addInput(SUPERGLOBAL.core.singletons.camera, 'scale', {
-    label: 'Scale',
-  })
-  const rendererFolder = pane.addFolder({
-    title: 'Renderer',
-    expanded: true,
-  })
-  const lightFolder = pane.addFolder({
-    title: 'Lights',
-    expanded: true,
-  })
-  const controlsFolder = pane.addFolder({
-    title: 'Controls',
-    expanded: true,
-  })
+  const stats = new Stats()
+  stats.setMode(0)
+  stats.domElement.style.position = 'absolute'
+  stats.domElement.style.left = '0px'
+  stats.domElement.style.top = '0px'
+  document.body.appendChild(stats.domElement)
 
-  SUPERGLOBAL.core.gui = {
-    scene: sceneFolder,
-    camera: cameraFolder,
-    renderer: rendererFolder,
-    lights: lightFolder,
-    controls: controlsFolder,
-  }
+  gsap.ticker.add(() => {
+    stats.update()
+  })
+  // const sceneFolder = pane.addFolder({
+  //   title: 'Scene',
+  //   expanded: true,
+  // })
+  // sceneFolder.addInput(SUPERGLOBAL.core.singletons.scene, 'background', {
+  //   label: 'Background',
+  // })
+  // debugger
+  // sceneFolder.addInput(SUPERGLOBAL.core.singletons.scene.fog, 'isFog', {
+  //   label: 'Scene Fog',
+  // })
+  // sceneFolder.addInput(SUPERGLOBAL.core.singletons.scene.fog, 'color', {
+  //   label: 'Color',
+  // })
+  // sceneFolder.addInput(SUPERGLOBAL.core.singletons.scene.fog, 'near', {
+  //   label: 'Near',
+  // })
+  // sceneFolder.addInput(SUPERGLOBAL.core.singletons.scene.fog, 'far', {
+  //   label: 'Far',
+  // })
+  // const cameraFolder = pane.addFolder({
+  //   title: 'Camera',
+  //   expanded: true,
+  // })
+  // cameraFolder.addInput(SUPERGLOBAL.core.singletons.camera, 'position', {
+  //   label: 'Position',
+  // })
+  // cameraFolder.addInput(SUPERGLOBAL.core.singletons.camera, 'rotation', {
+  //   label: 'Rotation',
+  // })
+  // cameraFolder.addInput(SUPERGLOBAL.core.singletons.camera, 'scale', {
+  //   label: 'Scale',
+  // })
+  // const rendererFolder = pane.addFolder({
+  //   title: 'Renderer',
+  //   expanded: true,
+  // })
+  // const lightFolder = pane.addFolder({
+  //   title: 'Lights',
+  //   expanded: true,
+  // })
+  // const controlsFolder = pane.addFolder({
+  //   title: 'Controls',
+  //   expanded: true,
+  // })
+
+  // SUPERGLOBAL.core.gui = {
+  //   scene: sceneFolder,
+  //   camera: cameraFolder,
+  //   renderer: rendererFolder,
+  //   lights: lightFolder,
+  //   controls: controlsFolder,
+  // }
 })
 </script>
 
@@ -127,6 +139,11 @@ onMounted(() => {
 .n-statistic .n-statistic__label {
   font-size: 14px;
   color: white;
+  font-weight: bold;
+}
+.n-statistic__value h1 {
+  font-size: 12px;
+  color:#eee;
 }
 .n-statistic h1 {
   font-size: 12px;
@@ -147,7 +164,7 @@ onMounted(() => {
   width: 80vw !important;
   font-size: 10px;
   margin: 0 auto;
-  border: 5px solid rgba(255, 245, 245, .9);
+  border: 5px solid black;
   box-shadow: inset 5px 5px 5px rgba(0, 0, 0, .8);
 }
 
@@ -170,6 +187,7 @@ onMounted(() => {
 .n-card {
   border-radius: var(--radius-3);
 
-  background-color: var(--bg-secondary)
+  background-color: var(--gray-9);
+  border-color: black;
 }
 </style>
