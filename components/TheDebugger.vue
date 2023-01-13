@@ -97,9 +97,7 @@ onMounted(() => {
     <div class="debugger-content shadow-md hover:shadow-xl">
       <n-card class="flex flex-column">
         <div class="flex gap-5">
-          <div class="title">
-            FPS
-          </div>
+          <div class="title" />
           <n-space class="flex gap-5">
             <n-statistic label="FPS">
               <h1>{{ fps }}</h1>
@@ -141,13 +139,13 @@ onMounted(() => {
   color: white;
   font-weight: bold;
 }
-.n-statistic__value h1 {
+ h1 {
   font-size: 12px;
-  color:#eee;
+  color:#b0b0b0;
+font-weight: 100 !important;
+
 }
-.n-statistic h1 {
-  font-size: 12px;
-}
+
 .debugger {
   background-color: transparent;
   position: fixed;

@@ -3,33 +3,23 @@
 // /* eslint-disable no-console */
 // /* eslint-disable no-undef */
 import * as THREE from 'three'
-import { FlyControls } from 'three/examples/jsm/controls/FlyControls'
 import { useEventListener } from '@vueuse/core'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import chalk from 'chalk'
-import { EventEmitter } from '~/utils/EventEmitter'
+import { Utils } from '~/utils/Utils'
 
+import { EventEmitter } from '~/utils/EventEmitter'
+import { useTick } from '~/composables/useTick'
+const { add } = useTick()
 const em = new EventEmitter()
+
+em.on('core:singletons:complete', () => {
+  // if (nuxtApp.$appStore.getDebugMode)
+  console.log('core:singletons:complete')
+})
 
 export default defineNuxtPlugin((nuxtApp) => {
   // const { buildUI } = useUIManager(nuxtApp);
   // Doing something with nuxtApp
-  em.on('app:loading:complete', () => {
-    if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.green.bgBlack('app:loading:complete'))
-  })
-  em.on('asset:loading:complete', () => {
-    if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.green.bgBlack('asset:loading:complete'))
-  })
-  em.on('asset:progress', () => {
-    if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.green.bgBlack('asset:progress'))
-  })
-  em.on('core:singletons:complete', () => {
-    if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.green.bgBlack('core:singletons:complete'))
-  })
 
   function createCoreSingletons(nuxtApp) {
     const canvas = document.querySelector('.main-canvas-3d')
@@ -41,110 +31,102 @@ export default defineNuxtPlugin((nuxtApp) => {
       scene.add(axesHelper)
     }
     scene.name = `CoreScene: ${time}`
-    scene.background = new THREE.Color(0xF0F0F0)
+    // scene.background = new THREE.Color(0xF0F0F0)
     scene.fog = new THREE.Fog(0xFFFFFF, 50, 500)
-    const perspectiveCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 500)
-    const orthographicCamera = new THREE.OrthographicCamera(
-      window.innerWidth / -2,
-      window.innerWidth / 2,
-      window.innerHeight / 2,
-      window.innerHeight / -2,
-      10,
-      150,
-    )
-    perspectiveCamera.position.set(0, 0, 1000)
-    perspectiveCamera.lookAt(0, 0, 0)
-    perspectiveCamera.name = `CoreCamera: ${time}`
-    orthographicCamera.name = `CoreCamera: ${time}`
-    const cameras = {
-      perspective: perspectiveCamera,
-      orthographic: orthographicCamera,
-      activeCamera: perspectiveCamera,
-    }
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000)
+    // const orthographicCamera = new THREE.OrthographicCamera(
+    //   window.innerWidth / -2,
+    //   window.innerWidth / 2,
+    //   window.innerHeight / 2,
+    //   window.innerHeight / -2,
+    //   10,
+    //   150,
+    // // )
+    camera.position.set(100, 100, 100)
+    camera.lookAt(0, 0, 0)
+    camera.name = `CoreCamera: ${time}`
+
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: false })
-    // renderer.shadowMap.enabled = true
-    // renderer.shadowMap.type = THREE.PCFSoftShadowMap
-    // renderer.physicallyCorrectLights = true
+    renderer.shadowMap.enabled = true
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap
+    renderer.physicallyCorrectLights = true
     // renderer.gammaFactor = 2.2
     // renderer.gammaOutput = true
     // renderer.outputEncoding = THREE.sRGBEncoding
     renderer.name = `CoreRenderer: ${time}`
     renderer.setSize(window.innerWidth, window.innerHeight)
 
-    const ambientLight = new THREE.AmbientLight(0xFF0000, 10.5)
+    const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5)
     ambientLight.name = `CoreAmbientLight: ${time}`
-    const pointLight = new THREE.PointLight(0xFFFFFF, 20)
+    const pointLight = Utils.three.createLight({
+      color: 0xFFFFFF,
+      intensity: 100,
+    })
+
     pointLight.name = `CorePointLight: ${time}`
-    pointLight.position.set(0, 0, 0)
+    pointLight.position.set(0, 10, 10)
     pointLight.castShadow = true
+    // const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.1)
 
-    const pointLight2 = new THREE.PointLight(0xFF0000, 10)
+    const pointLight2 = new THREE.PointLight(0xFF0000, 0.5)
+    const pointLightHelper2 = new THREE.PointLightHelper(pointLight2, 0.1)
     pointLight2.name = `CorePointLight2: ${time}`
-    pointLight2.position.set(100, 100, 100)
+    pointLight2.position.set(0, 0, 0)
 
-    const orbitControls = new OrbitControls(cameras.activeCamera, renderer.domElement)
-    orbitControls.name = `CoreOrbitControls: ${time}`
-    orbitControls.enableDamping = true
-    orbitControls.dampingFactor = 0.05
-    orbitControls.enableZoom = true
-    orbitControls.autoRotate = true
-    orbitControls.autoRotateSpeed = 0.5
-    orbitControls.maxPolarAngle = Math.PI / 2
-    orbitControls.minDistance = 10
-    orbitControls.maxDistance = 100
-    orbitControls.update()
+    const controls = new OrbitControls(camera, renderer.domElement)
+    controls.name = `Corecontrols: ${time}`
+    controls.enableDamping = true
+    controls.update()
 
-    const flyControls = new FlyControls(cameras.activeCamera, renderer.domElement)
-    flyControls.name = `CoreFlyControls: ${time}`
-    flyControls.movementSpeed = 10
-    flyControls.rollSpeed = Math.PI / 24
-    flyControls.dragToLook = true
-    flyControls.update()
-
-    const controls = {
-      orbitControls,
-      flyControls,
-      activeControls: orbitControls,
+    scene.add(ambientLight, pointLight, pointLight2, pointLightHelper2, camera)
+    const animate = () => {
+      renderer.render(scene, camera)
+      controls.update()
+      requestAnimationFrame(animate)
     }
+    animate()
+    // const flyControls = new FlyControls(cameras.activeCamera, renderer.domElement)
+    // flyControls.name = `CoreFlyControls: ${time}`
+    // flyControls.movementSpeed = 10
+    // flyControls.rollSpeed = Math.PI / 24
+    // flyControls.dragToLook = true
+    // flyControls.update()
 
-    scene.add(perspectiveCamera, ambientLight, pointLight, pointLight2)
+    // const controls = {
+    //   orbitControls,
+    //   // flyControls,
+    //   activeControls: orbitControls,
+    // }
+
     useEventListener('resize', () => {
-      cameras.perspective.aspect = window.innerWidth / window.innerHeight
-      cameras.perspective.updateProjectionMatrix()
+      camera.aspect = window.innerWidth / window.innerHeight
+      camera.updateProjectionMatrix()
       renderer.setSize(window.innerWidth, window.innerHeight)
     })
-    const animate = () => {
-      requestAnimationFrame(animate)
-      controls.activeControls.update(0.01)
-
-      renderer.render(scene, cameras.activeCamera)
-    }
-
-    animate()
 
     SUPERGLOBAL.core = {}
-    SUPERGLOBAL.core.singletons = {}
-    SUPERGLOBAL.core.singletons.scene = scene
-    SUPERGLOBAL.core.singletons.cameras = cameras
-    SUPERGLOBAL.core.singletons.renderer = renderer
-    SUPERGLOBAL.core.singletons.lights = {
+    SUPERGLOBAL.core = {}
+    SUPERGLOBAL.core.scene = scene
+    SUPERGLOBAL.core.camera = camera
+    SUPERGLOBAL.core.renderer = renderer
+    SUPERGLOBAL.core.lights = {
       ambientLight,
       pointLight,
       pointLight2,
     }
-    SUPERGLOBAL.core.singletons.controls = controls
-    SUPERGLOBAL.core.singletons.clock = clock
+    SUPERGLOBAL.core.controls = controls
+    SUPERGLOBAL.core.clock = clock
 
     em.trigger('core:singletons:complete')
   }
   nuxtApp.hook('app:created', () => {
     if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.green.bgBlack('app:created'))
+      console.log('app:created')
   })
   nuxtApp.hook('app:error', (err) => {
     /* your code goes here */
     if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.black.bgRed('app:error'))
+      console.log('app:error')
 
     throw createError({
       statusCode: 500,
@@ -154,22 +136,22 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.hook('app:error:cleared', () => {
     /* your code goes here */
     if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.blue.bgBlack('app:error:cleared'))
+      console.log('app:error:cleared')
   })
   nuxtApp.hook('app:data:refresh', () => {
     /* your code goes here */
     if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.blue.bgBlack('app:data:refresh'))
+      console.log('app:data:refresh')
   })
   nuxtApp.hook('vue:setup', () => {
     /* your code goes here */
     if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.blue.bgBlack('vue:setup'))
+      console.log('vue:setup')
   })
   nuxtApp.hook('vue:setup:done', () => {
     /* your code goes here */
     if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.green.bgBlack('vue:setup:done'))
+      console.log('vue:setup:done')
   })
   nuxtApp.hook('vue:setup:error', (err) => {
     /* your code goes here */
@@ -184,24 +166,24 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.hook('vue:setup:error:cleared', () => {
     /* your code goes here */
     if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.green.bgBlack('vue:setup:error:cleared'))
+      console.log('vue:setup:error:cleared')
   })
   nuxtApp.hook('vue:setup:done', () => {
     /* your code goes here */
     // if (nuxtApp.$appStore.getDebugMode)
-    console.log(chalk.green.bgBlack('vue:setup:done'))
+    console.log('vue:setup:done')
   })
 
   nuxtApp.hook('app:rendered', () => {
     /* your code goes here */
 
     if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.green.bgBlack('app:rendered'))
+      console.log('app:rendered')
   })
   nuxtApp.hook('app:redirected', () => {
     /* your code goes here */
     if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.blue.bgBlack('app:redirected'))
+      console.log('app:redirected')
   })
   nuxtApp.hook('app:beforeMount', () => {
     /* your code goes here */
@@ -209,7 +191,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     // nuxtApp.$resources.init()
 
     if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.blue.bgBlack('app:beforeMount'))
+      console.log('app:beforeMount')
   })
   nuxtApp.hook('app:mounted', () => {
     /* your code goes here */
@@ -219,16 +201,16 @@ export default defineNuxtPlugin((nuxtApp) => {
     // buildUI();
     nuxtApp.$appStore.appLoadingStatus.value = false
     if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.green.bgBlack('app:mounted'))
+      console.log('app:mounted')
   })
   nuxtApp.hook('app:suspense:resolve', () => {
     /* your code goes here */
     if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.green.bgBlack('app:suspense:resolve'))
+      console.log('app:suspense:resolve')
   })
   nuxtApp.hook('link:prefetch', () => {
     /* your code goes here */
     if (nuxtApp.$appStore.getDebugMode)
-      console.log(chalk.blue.bgBlack('link:prefetch'))
+      console.log('link:prefetch')
   })
 })

@@ -1,6 +1,7 @@
 <script setup>
 import Naive from 'naive-ui'
 import gsap from 'gsap'
+
 useHead({
   title: 'RYAN THE DEVELOPER',
   link: [
@@ -8,7 +9,7 @@ useHead({
       rel: 'icon', type: 'image/png', href: '/public-assets/favicon.png',
     },
   ],
-  script: [{ children: 'let scene, camera, renderer, SUPERGLOBAL = {core: { singletons: {}, gui: {} }}' }],
+  script: [{ children: ' SUPERGLOBAL = {core: {}, gui:{}}' }],
 })
 
 const nuxtApp = useNuxtApp()
@@ -17,7 +18,7 @@ const canvas2d = ref(null)
 const canvas3d = ref(null)
 
 onMounted(() => {
-  SUPERGLOBAL.core.singletons.canvasRefs = {
+  SUPERGLOBAL.core.canvasRefs = {
     canvas2d: canvas2d.value,
     canvas3d: canvas3d.value,
   }
@@ -38,18 +39,18 @@ onMounted(() => {
     <div id="canvas-container">
       <canvas ref="canvas2d" class="canvas-ui main-canvas-2d" />
       <canvas ref="canvas3d" class="canvas-ui main-canvas-3d" />
+      <ClientOnly>
+        <TheFloatingMenu />
+        <TheLogo />
+        <TheSplash />
+      </ClientOnly>
+      <!-- <NuxtPage /> -->
     </div>
-    <ClientOnly>
-      <TheFloatingMenu />
-
-      <TheSplash />
-    </ClientOnly>
-    <!-- <NuxtPage /> -->
   </NuxtLayout>
 </template>
 
 <style scoped>
-#main-canvas-3d,
+.main-canvas-3d,
 #canvas-container {
   position: fixed !important;
   top: 0;
@@ -58,6 +59,10 @@ onMounted(() => {
   height: 100vh !important;
   z-index: 100000000 !important;
   background: orange;
+}
+.main-canvas-3d {
+  background: pink;
+  z-index: 9999999999999 !important;
 }
 html, body , #__nuxt{
   height: 100vh;

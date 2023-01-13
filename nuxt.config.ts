@@ -3,11 +3,17 @@ import Components from 'unplugin-vue-components/vite'
 import glsl from 'vite-plugin-glsl'
 export default defineNuxtConfig({
   modules: [
+    '@kevinmarrec/nuxt-pwa',
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
   ],
+  pwa: {
+    workbox: {
+      enabled: false,
+    },
+  },
   css: [
     '@unocss/reset/tailwind.css',
     '~/assets/css/base-dark.min.css',

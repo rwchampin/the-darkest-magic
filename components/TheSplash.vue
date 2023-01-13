@@ -1,35 +1,43 @@
 <script setup>
 import * as THREE from 'three'
+import { useEventListener } from '@vueuse/core'
 import { useBlackEnergy } from '~~/composables/useBlackEnergy'
 import { EventEmitter } from '~/utils/EventEmitter'
 import { usePoints } from '~/particles/usePoints'
 const em = new EventEmitter()
-let scene, camera, renderer
+let scene, camera, renderer, lights, clock, controls
 
 const pngLogo = window.asssets
 
+// useEventListener(document, 'core:singletons:complete', () => {
+//   alert()
+//   // if (nuxtApp.$appStore.getDebugMode)
+//   console.log(chalk.green.bgBlack('core:singletons:complete'))
+// })
 const animate = () => {
   requestAnimationFrame(animate)
-  // scene.children.forEach((child) => {
-  //   if (child instanceof THREE.Points)
-  //     child.rotation.y += 0.001
-  // })
+  // planet.rotation.y += 0.001
+  // stars.rotation.y += 0.001
+  // starLights.rotation.y += 0.001
+  // points.rotation.y += 0.001
   renderer.render(scene, camera)
 }
-
 const init = () => {
-  const { planet, stars, starLights } = useBlackEnergy()
-  const { points } = usePoints()
+  // const { planet, stars, starLights } = useBlackEnergy()
+  const points = usePoints()
+  points.position.set(0, 0, 0)
+  points.rotation.x = Math.PI * -0.5
+  scene.add(points)
 
-  scene.add(points, planet, stars, starLights, ambientLight, pointLight, pointLight2)
   animate()
 }
-em.on('core:singletons:ready', () => {
-  alert()
-  scene = SUPERGLOBAL.scene
-  camera = SUPERGLOBAL.cameras.perspective
-  renderer = SUPERGLOBAL.renderer
-  debugger
+onMounted(() => {
+  camera = SUPERGLOBAL.core.camera
+  lights = SUPERGLOBAL.core.lights
+  scene = SUPERGLOBAL.core.scene
+  clock = SUPERGLOBAL.core.clock
+  renderer = SUPERGLOBAL.core.renderer
+
   init()
 })
 </script>

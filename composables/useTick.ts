@@ -1,26 +1,29 @@
-import * as THREE from "three";
-import chalk from "chalk";
-import gsap from "gsap";
-import { useIdle, usePageLeave } from "@vueuse/core";
-import chroma from "~~/assets/libs/chroma";
+import * as THREE from 'three'
+import gsap from 'gsap'
+import { useIdle, usePageLeave } from '@vueuse/core'
+import { watch } from 'vue'
+import { useLogger } from '~~/composables/useLogger'
 
-interface RenderFN {
-   type: string;
-}
+const { log, warn, error, debug } = useLogger()
+const { idle } = useIdle(1 * 60 * 1000)
+const isLeft = usePageLeave()
 export const useTick = () => {
+  const changeFPS = fps => gsap.ticker.fps(fps)
 
-    const pause = gsap.ticker.pause;
-    const resume = gsap.ticker.resume;
-    const stop = gsap.ticker.stop;
-    const changeFPS = (fps) =>  gsap.ticker.fps(fps);
+  watch([idle, isLeft], (v) => {
+    if (v.includes(true)) {
+      debug('Idle')
+      gsap.ticker.sleep()
+    }
+    else {
+      debug('Active')
+      gsap.ticker.wake()
+    }
+  })
+  const add = gsap.ticker.add
 
-    const add = gsap.ticker.add;
-
-    return {
-        pause,
-        resume,
-        stop,
-        changeFPS,
-        add,
-    };
+  return {
+    changeFPS,
+    add,
+  }
 }

@@ -1,33 +1,37 @@
-import chalk from 'chalk'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
+import { useLogger } from '~~/composables/useLogger.js'
 import { EventEmitter } from '~/utils/EventEmitter.js'
 import { sources } from '~/utils/sources.js'
 
+const { log, warn, error, debug } = useLogger()
 const em = new EventEmitter()
 
+em.on('app:loading:complete', () => {
+  // if (nuxtApp.$appStore.getDebugMode)
+  console.log('app:loading:complete')
+})
+em.on('assets:loading:complete', () => {
+  // if (nuxtApp.$appStore.getDebugMode)
+  console.log('asset:loading:complete')
+})
+em.on('assets:progress', () => {
+  // if (nuxtApp.$appStore.getDebugMode)
+  console.log('asset:progress')
+})
 export const useResources = (nuxtApp) => {
   let loaders = {}
   let progress = 0
   const items = {}
   let loaded = 0
 
-  em.on('assets:loaded', (items) => {
-    console.log(chalk.green.bgBlack('assets:loaded'))
-    console.log('items', items)
-  })
-
-  em.on('assets:progress', (progress) => {
-    console.log(chalk.green.bgBlack('assets:progress'))
-    console.log('progress', progress)
-  })
-
   // const THREE = nuxtApp.$plugins.THREE;
   const loadingManager = new THREE.LoadingManager(
     () => {
+      debugger
       window.assets = items
-      em.trigger('assets:loaded', items)
+      em.trigger('assets:loading:complete', items)
       // nuxtApp.$appStore.appLoadingStatus.value = false
     },
     (url, itemsLoaded, itemsTotal) => {
@@ -35,11 +39,11 @@ export const useResources = (nuxtApp) => {
       progress = Math.round((itemsLoaded / itemsTotal) * 100)
       // console.log("progress", progress);
 
-      em.trigger('assets:progress', progress)
+      em.trigger('assets:loading:progress', progress)
     },
     () => {
       // onError
-      console.log(chalk.red.bgBlack('Error loading assets'))
+      log('Error loading assets')
     },
   )
   const sourceLoaded = (source, file) => {
@@ -74,7 +78,7 @@ export const useResources = (nuxtApp) => {
       }
     }
     catch (err) {
-      console.log(chalk.black.bgRed.bold('Error loading assets'), err)
+      error('Error loading assets:: ', err)
       throw createError({
         statusCode: 500,
         statusMessage: `Error loading assets.  Check 'useResources.js'.${err}`,
