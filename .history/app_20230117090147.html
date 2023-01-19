@@ -1,0 +1,15 @@
+<html>
+    <head>
+
+        {% if (ENV.NODE_ENV === 'dev') { %}
+            <!-- debug scripts -->
+        {% } else if (ENV.NODE_ENV === 'production') { %}
+            <!-- production scripts -->
+        {% } %}
+        <script>alert()
+</script>
+    </head>
+    <body>
+fuck
+    </body>
+</html>

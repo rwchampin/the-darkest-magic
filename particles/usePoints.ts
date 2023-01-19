@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import fragment from '~/components/shaders/yuri/fragment.glsl'
-import vertex from '~/components/shaders/yuri/vertex.glsl'
+import fragment from '~shaders/yuri/fragment.glsl'
+import vertex from '~shaders/yuri/vertex.glsl'
 
 export const usePoints = () => {
   // const planeGeometry = new THREE.PlaneGeometry(10, 10)
