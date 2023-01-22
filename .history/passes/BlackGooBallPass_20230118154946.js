@@ -6,6 +6,6 @@ export default {
     u_Resolution: { type: 'v2', value: null },
     u_time: { type: 'float', value: 0 },
   },
-  vertexShader: shaderVertex,
-  glslmentShader: shaderFragment,
+  vertexShader: vertex,
+  fragmentShader: fragment,
 }
