@@ -17,6 +17,7 @@
     "@pinia/nuxt": "^0.4.3",
     "@types/three": "^0.148.0",
     "@vueuse/nuxt": "^9.5.0",
+    "animejs": "^3.2.1",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.27.0",
     "glslify": "^7.1.1",

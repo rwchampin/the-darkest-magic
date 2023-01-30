@@ -9,6 +9,7 @@ specifiers:
   '@types/three': ^0.148.0
   '@vueuse/core': ^9.10.0
   '@vueuse/nuxt': ^9.5.0
+  animejs: ^3.2.1
   autoprefixer: ^10.4.13
   eslint: ^8.27.0
   glslify: ^7.1.1
@@ -46,6 +47,7 @@ devDependencies:
   '@pinia/nuxt': 0.4.3_typescript@4.9.3
   '@types/three': 0.148.0
   '@vueuse/nuxt': 9.5.0_nuxt@3.0.0
+  animejs: 3.2.1
   autoprefixer: 10.4.13_postcss@8.4.21
   eslint: 8.27.0
   glslify: 7.1.1
@@ -1742,6 +1744,10 @@ packages:
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
+    dev: true
+
+  /animejs/3.2.1:
+    resolution: {integrity: sha512-sWno3ugFryK5nhiDm/2BKeFCpZv7vzerWUcUPyAZLDhMek3+S/p418ldZJbJXo5ZUOpfm2kP2XRO4NJcULMy9A==}
     dev: true
 
   /ansi-escapes/4.3.2:
