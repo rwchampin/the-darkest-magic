@@ -1,0 +1,59 @@
+/* 
+@font-face {
+  font-family: "MessyBrush";
+  src: url("~assets/fonts/brush.ttf") format("truetype");
+} */
+
+:root {
+  --text-size-small: 12px;
+  --text-size-primary: 16px;
+  --text-size-medium: 18px;
+  --text-size-large: 24px;
+
+  --rtd-text-fade-gradient: linear-gradient(
+    271.24deg,
+    #202124,
+    rgba(32, 33, 36, 0)
+  );
+}
+
+html,
+body,
+p,
+div {
+  font-family: "Montserrat", open-sans;
+  font-weight: 400;
+  font-style: normal;
+  font-size: var(--text-size-primary);
+  line-height: 115%;
+}
+h1,
+.title {
+  font-family: "Montserrat-Black", open-sans;
+  font-weight: 900;
+  font-style: normal;
+  font-size: var(--text-size-large);
+}
+
+h2,
+h3,
+h4,
+h5,
+h6,
+.subtitle {
+  font-family: "Montserrat-Black", open-sans;
+  color: var(--color-subtitle);
+}
+.subtitle {
+  font-size: var(--subtitle-font-size-1);
+  font-weight: 700;
+}
+a {
+  font-family: "apercu medium";
+  font-weight: 900;
+}
+.text-fade {
+  background: var(--rtd-text-fade-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
