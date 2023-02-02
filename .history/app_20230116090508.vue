@@ -5,7 +5,7 @@ import Experience from './core/Experience'
 const nuxtApp = useNuxtApp()
 const canvas2d = ref(null)
 const canvas3d = ref(null)
-// const mode = nuxtApp.$colorMode.preference
+// const mode = nuxtApp.$colorM   ode.preference
 function createCoreSingletons(nuxtApp) {
   const { canvas2d, canvas3d, scene, camera, renderer, ambientLight, pointLight, directionalLight, rectAreaLight, spotLight, hemisphereLight } = useCore(nuxtApp)
   const { planet, stars } = useBlackEnergy(nuxtApp)
