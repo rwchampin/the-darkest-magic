@@ -19,9 +19,6 @@
     "@vueuse/nuxt": "^9.5.0",
     "animejs": "^3.2.1",
     "autoprefixer": "^10.4.13",
-    "eslint": "^8.27.0",
-    "glslify": "^7.1.1",
-    "jquery": "^3.6.3",
     "nuxt": "^3.0.0",
     "pinia": "^2.0.23",
     "postcss": "^8.4.21",
@@ -31,7 +28,7 @@
     "vite-plugin-glsl": "^1.0.2"
   },
   "dependencies": {
-    "@vueuse/core": "^9.10.0",
+    "@css-render/vue3-ssr": "^0.15.12",
     "gsap": "file:assets/libs/gsap.tgz",
     "naive-ui": "^2.34.3",
     "stats-js": "^1.0.1",

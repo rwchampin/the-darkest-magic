@@ -1,0 +1,20 @@
+/***************************************
+/** COMPONENTS.CSS
+/** Styling for specific components.
+/**
+/** 1. magicmouse
+/** 1. ui-canvas
+/***************************************/
+.magicmouse {
+  will-change: transform;
+}
+
+.canvas-ui {
+  top: 0 !important;
+  left: 0 !important;
+  position: fixed !important;
+  transition: opacity 0.5s var(--ease-in-out-5);
+}
+.canvas-ui.fade-in {
+  opacity: 1;
+}

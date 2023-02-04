@@ -1,0 +1,44 @@
+{
+  "private": true,
+  "packageManager": "pnpm@7.9.0",
+  "scripts": {
+    "build": "nuxi build",
+    // "dev": "nuxt dev --https --ssl-cert ./ssl/localhost.pem --ssl-key ./ssl/localhost-key.pem -o",
+    "dev": "nuxi dec -o",
+    "start": "node .output/server/index.mjs",
+    "lint": "eslint .",
+    "postinstall": "nuxi prepare",
+    "generate": "nuxi generate"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.30.1",
+    "@iconify-json/carbon": "^1.1.10",
+    "@kevinmarrec/nuxt-pwa": "^0.14.1",
+    "@nuxtjs/color-mode": "^3.2.0",
+    "@pinia/nuxt": "^0.4.3",
+    "@types/three": "^0.148.0",
+    "@vueuse/nuxt": "^9.5.0",
+    "animejs": "^3.2.1",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^8.27.0",
+    "glslify": "^7.1.1",
+    "jquery": "^3.6.3",
+    "nuxt": "^3.0.0",
+    "pinia": "^2.0.23",
+    "postcss": "^8.4.21",
+    "simplex-noise": "^4.0.1",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.9.3",
+    "vite-plugin-glsl": "^1.0.2"
+  },
+  "dependencies": {
+    "@vueuse/core": "^9.10.0",
+    "gsap": "file:assets/libs/gsap.tgz",
+    "naive-ui": "^2.34.3",
+    "stats-js": "^1.0.1",
+    "stats.js": "^0.17.0",
+    "three": "^0.148.0",
+    "tweakpane": "^3.1.1",
+    "unplugin-vue-components": "^0.22.12"
+  }
+}

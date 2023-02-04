@@ -10,5 +10,9 @@
   "nuxt.isNuxtApp": false,
   "editor.defaultFormatter": "Vue.volar",
   "editor.formatOnPaste": true,
-  "editor.formatOnType": true
+  "editor.formatOnType": true,
+  "workbench.tree.indent": 4,
+  "[glsl]": {
+    "editor.defaultFormatter": "circledev.glsl-canvas"
+  }
 }

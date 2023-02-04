@@ -9,14 +9,17 @@ import { Vector2 } from '~/utils/Vector'
 import fragment from '~/shaders/mouseGlow/fragment.glsl'
 import vertex from '~/shaders/mouseGlow/vertex.glsl'
 // import { Utils } from '~/utils'
-let that
+let instance = null
+
 export default class MagicMouse {
   constructor({ camera, scene, renderer }) {
     /*******************
      * 1. Setup
      * *****************/
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    that = this
+    if (instance) {
+      return instance
+    }
+    instance = this
     this.camera = camera
     this.scene = scene
     this.scene1 = new THREE.Scene()
@@ -171,29 +174,29 @@ export default class MagicMouse {
 
   animate() {
     debugger
-    if (!that.cursor || !that.temp || !that.eMouse || !that.elasticMouse || !that.elasticMouseVel) {
+    if (!instance.cursor || !instance.temp || !instance.eMouse || !instance.elasticMouse || !instance.elasticMouseVel) {
       throw createError({
         statusMessage: 'No cursor element found in MagicMouse.animate()',
         statusCode: 500,
         cause: 'One or more cursor variables are undefined in MagicMouse.animate()',
       })
     }
-    // that.cursor.style.transform = `translate(${that.eMouse.x}px, ${that.eMouse.y}px)`
+    instance.cursor.style.transform = `translate(${instance.eMouse.x}px, ${instance.eMouse.y}px)`
 
-    that.temp.copy(that.eMouse).sub(that.elasticMouse).multiplyScalar(0.15)
-    that.elasticMouseVel.add(that.temp)
-    that.elasticMouseVel.multiplyScalar(0.85)
-    that.elasticMouse.add(that.elasticMouseVel)
+    instance.temp.copy(instance.eMouse).sub(instance.elasticMouse).multiplyScalar(0.15)
+    instance.elasticMouseVel.add(instance.temp)
+    instance.elasticMouseVel.multiplyScalar(0.85)
+    instance.elasticMouse.add(instance.elasticMouseVel)
 
-    that.light.position.set(that.eMouse.x, that.eMouse.y, 0)
+    instance.light.position.set(instance.eMouse.x, instance.eMouse.y, 0)
 
-    that.material.uniforms.uLight.value = that.light.position
-    that.material.uniforms.time.value = Date.now() * 0.0005
+    instance.material.uniforms.uLight.value = instance.light.position
+    instance.material.uniforms.time.value = Date.now() * 0.0005
 
-    that.renderer.clear()
-    that.renderer.render(that.scene1, that.camera)
-    that.renderer.clearDepth()
-    that.renderer.render(that.scene, that.camera)
+    instance.renderer.clear()
+    instance.renderer.render(instance.scene1, instance.camera)
+    instance.renderer.clearDepth()
+    instance.renderer.render(instance.scene, instance.camera)
   }
 
   /*********************************
@@ -203,27 +206,4 @@ export default class MagicMouse {
     return this.mouse
   }
 
-  get mouse() {
-    return this._mouse
-  }
-
-  get eMouse() {
-    return this._eMouse
-  }
-
-  get elasticMouse() {
-    return this._elasticMouse
-  }
-
-  get elasticMouseVel() {
-    return this._elasticMouseVel
-  }
-
-  get temp() {
-    return this._temp
-  }
-
-  get cursor() {
-    return this._cursor
-  }
 }
