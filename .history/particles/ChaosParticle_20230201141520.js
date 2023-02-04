@@ -9,7 +9,7 @@ const CELLSIZE2 = CELLSIZE / 2
 const canvas = document.getElementById('c')
 let screenRatio = 1.0
 
-if (navigator.userAgent.match(/iPad/i)) {
+if (navigator.userAgentData.match(/iPad/i)) {
   WIDTH = 320
   HEIGHT = 240
   NPARTICLES /= 5
@@ -20,7 +20,7 @@ if (navigator.userAgent.match(/iPad/i)) {
   document.getElementById('d').style['margin-top'] = '30px'
   document.getElementById('h').style.display = 'none'
 }
-else if (navigator.userAgent.match(/iPhone|iPod|Android/i)) {
+else if (navigator.userAgentData.match(/iPhone|iPod|Android/i)) {
   WIDTH = 320
   HEIGHT = 200
   NPARTICLES /= 5
@@ -32,7 +32,7 @@ else if (navigator.userAgent.match(/iPhone|iPod|Android/i)) {
   document.getElementById('h').style.display = 'none'
   document.getElementById('header').style.display = 'none'
   // WOW it's that hard to get fullscreen on android
-  if (navigator.userAgent.match(/Android/i)) {
+  if (navigator.userAgentData.match(/Android/i)) {
     canvas.style.height = '1000px'
     setTimeout(() => {
       window.scrollTo(0, window.innerHeight)

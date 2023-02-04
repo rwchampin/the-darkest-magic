@@ -5700,7 +5700,7 @@ import * as THREE from 'three';
     exports.color2 = '#ffffff'
   }, {}],
   20: [function (require, module, exports) {
-    const isMobile = /(iPad|iPhone|Android)/i.test(navigator.userAgent)
+    const isMobile = /(iPad|iPhone|Android)/i.test(navigator.userAgentData)
 
     exports.pass = pass
 

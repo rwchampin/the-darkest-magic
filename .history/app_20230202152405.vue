@@ -72,7 +72,7 @@ onMounted(() => {
   const canvas = renderer.domElement
   let screenRatio = 1.0
 
-  if (navigator.userAgent.match(/iPad/i)) {
+  if (navigator.userAgentData.match(/iPad/i)) {
     WIDTH = 320
     HEIGHT = 240
     NPARTICLES /= 5
@@ -81,7 +81,7 @@ onMounted(() => {
     canvas.style.height = window.innerHeight
   }
     // WOW it's that hard to get fullscreen on android
-    if (navigator.userAgent.match(/Android/i)) {
+    if (navigator.userAgentData.match(/Android/i)) {
       canvas.style.height = '1000px'
       setTimeout(() => {
         window.scrollTo(0, window.innerHeight)

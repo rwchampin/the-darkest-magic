@@ -6205,7 +6205,7 @@
 
 
     }, {}], 20: [function (require, module, exports) {
-        var isMobile = /(iPad|iPhone|Android)/i.test(navigator.userAgent);
+        var isMobile = /(iPad|iPhone|Android)/i.test(navigator.userAgentData);
 
         exports.pass = pass;
 

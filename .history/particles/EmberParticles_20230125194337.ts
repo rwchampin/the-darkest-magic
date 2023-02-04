@@ -29,12 +29,12 @@ export default class Ember {
 
     this.TWO_PI = Math.PI * 2
     this.mobile
-      = navigator.userAgent.match(/Android/i)
-      || navigator.userAgent.match(/webOS/i)
-      || navigator.userAgent.match(/iPhone/i)
-      || navigator.userAgent.match(/iPod/i)
-      || navigator.userAgent.match(/BlackBerry/i)
-      || navigator.userAgent.match(/Windows Phone/i)
+      = navigator.userAgentData.match(/Android/i)
+      || navigator.userAgentData.match(/webOS/i)
+      || navigator.userAgentData.match(/iPhone/i)
+      || navigator.userAgentData.match(/iPod/i)
+      || navigator.userAgentData.match(/BlackBerry/i)
+      || navigator.userAgentData.match(/Windows Phone/i)
 
     // Spatial variables
     this.width = 500

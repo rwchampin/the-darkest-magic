@@ -5,7 +5,7 @@ exprt default const useLogger = () => {
     this.show();
 
   const log = (str:string) => {
-    if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+    if (navigator.userAgentData.toLowerCase().indexOf('chrome') > -1) {
       const args = [
         `%c ${str} %c`,
         `color: #fff; background: #47c; padding:3px 0;`,

@@ -6,6 +6,9 @@
   "files.associations": {
     "*.css": "postcss"
   },
-  "editor.formatOnSave": false,
-  "nuxt.isNuxtApp": false
+  "editor.formatOnSave": true,
+  "nuxt.isNuxtApp": false,
+  "editor.defaultFormatter": "Vue.volar",
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true
 }
