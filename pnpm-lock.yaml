@@ -11,9 +11,11 @@ specifiers:
   '@vueuse/nuxt': ^9.5.0
   animejs: ^3.2.1
   autoprefixer: ^10.4.13
+  chroma-js: ^2.4.2
   gsap: file:assets/libs/gsap.tgz
   naive-ui: ^2.34.3
   nuxt: ^3.0.0
+  ogl: ^0.0.108
   pinia: ^2.0.23
   postcss: ^8.4.21
   simplex-noise: ^4.0.1
@@ -27,8 +29,10 @@ specifiers:
 
 dependencies:
   '@css-render/vue3-ssr': 0.15.12
+  chroma-js: 2.4.2
   gsap: file:assets/libs/gsap.tgz
   naive-ui: 2.34.3
+  ogl: 0.0.108
   stats.js: 0.17.0
   three: 0.148.0
   tweakpane: 3.1.1
@@ -2032,6 +2036,10 @@ packages:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
     dev: true
+
+  /chroma-js/2.4.2:
+    resolution: {integrity: sha512-U9eDw6+wt7V8z5NncY2jJfZa+hUH8XEj8FQHgFJTrUFnJfXYf4Ml4adI2vXZOjqRDpFWtYVWypDfZwnJ+HIR4A==}
+    dev: false
 
   /ci-info/3.5.0:
     resolution: {integrity: sha512-yH4RezKOGlOhxkmhbeNuC4eYZKAUsEaGtBuBzDDP1eFUKiccDWzBABxBfOx31IDwDIXMTxWuwAxUGModvkbuVw==}
@@ -4765,6 +4773,10 @@ packages:
       node-fetch-native: 1.0.1
       ufo: 1.0.0
     dev: true
+
+  /ogl/0.0.108:
+    resolution: {integrity: sha512-21/bNj9UiEh2N99TLdKVI4EavJtBA8ot//5OoMFbdHB7hvWAQ2Kd+2xTQsujvO+HT0inay2YdW2i6OUHFKxvxQ==}
+    dev: false
 
   /ohash/1.0.0:
     resolution: {integrity: sha512-kxSyzq6tt+6EE/xCnD1XaFhCCjUNUaz3X30rJp6mnjGLXAAvuPFqohMdv0aScWzajR45C29HyBaXZ8jXBwnh9A==}
