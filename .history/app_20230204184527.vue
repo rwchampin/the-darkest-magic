@@ -7,7 +7,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 // import EmberParticle from '~~/particles/EmberParticle'
 import EventBus from '~/core/EventBus'
 import MagicMouse from './core/MagicMouse'
-import { useMagicKeyRegistration } from '~/composables/useMagicKeyRegistration'
+// import { useMagicKeyRegistration } from '~/composables/useMagicKeyRegistration'
 // import { useVolumetric } from '~/composables/useVolumetric.js'
 import { useSpikeSphere } from '~/composables/useSpikeSphere.js'
 import { Utils } from '~/utils'
@@ -123,7 +123,7 @@ onMounted(() => {
   //   //   duration: 1,
   //   //   ease: 'power2.out',
   //   // })
-  useMagicKeyRegistration()
+  // useMagicKeyRegistration()
   //   // const { on, off, emit } = useEventBus()
   //   // on('debugMode', (debugMode) => {
   //   //   alert('debugMode')

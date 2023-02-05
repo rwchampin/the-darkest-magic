@@ -17,7 +17,7 @@ const draggable = ref(null)
 const store = useAppStore()
 const { isSupported, memory } = useMemory()
 const fps = useFps()
-
+debugger
 const initStats = () => {
   const stats = new Stats()
   stats.setMode(0)

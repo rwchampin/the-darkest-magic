@@ -17,7 +17,6 @@ specifiers:
   pinia: ^2.0.23
   postcss: ^8.4.21
   simplex-noise: ^4.0.1
-  stats-js: ^1.0.1
   stats.js: ^0.17.0
   tailwindcss: ^3.2.4
   three: ^0.148.0
@@ -30,7 +29,6 @@ dependencies:
   '@css-render/vue3-ssr': 0.15.12
   gsap: file:assets/libs/gsap.tgz
   naive-ui: 2.34.3
-  stats-js: 1.0.1
   stats.js: 0.17.0
   three: 0.148.0
   tweakpane: 3.1.1
@@ -5904,10 +5902,6 @@ packages:
   /standard-as-callback/2.1.0:
     resolution: {integrity: sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==}
     dev: true
-
-  /stats-js/1.0.1:
-    resolution: {integrity: sha512-EAwEFghGNv8mlYC4CZzI5kWghsnP8uBKXw6VLRHtXkOk5xySfUKLTqTkjgJFfDluIkf/O7eZwi5MXP50VeTbUg==}
-    dev: false
 
   /stats.js/0.17.0:
     resolution: {integrity: sha512-hNKz8phvYLPEcRkeG1rsGmV5ChMjKDAWU7/OJJdDErPBNChQXxCo3WZurGpnWc6gZhAzEPFad1aVgyOANH1sMw==}

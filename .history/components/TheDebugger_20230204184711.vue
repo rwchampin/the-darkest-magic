@@ -5,7 +5,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import gsap from 'gsap'
 // import * as THREE from 'three'
 // import { GSDevTools } from 'gsap/GSDevTools.js'
-import Stats from 'stats.js'
+// import Stats from 'stats.js'
 import { watch } from 'vue'
 import { useAppStore } from '~/store/useAppStore'
 import { Utils } from '~/utils'
@@ -17,7 +17,7 @@ const draggable = ref(null)
 const store = useAppStore()
 const { isSupported, memory } = useMemory()
 const fps = useFps()
-
+debugger
 const initStats = () => {
   const stats = new Stats()
   stats.setMode(0)
