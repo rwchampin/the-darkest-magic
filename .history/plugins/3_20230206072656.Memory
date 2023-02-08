@@ -1,0 +1,15 @@
+
+import { watch } from 'vue';
+import { usePageLeave, useIdle } from '@vueuse/core';
+
+
+export default defineNuxtPlugin(() => {debugger
+    const { idle, lastActive } = useIdle(5 * 60 * 1000) // 5 min
+
+    const isLeft = usePageLeave()
+
+    watch([isLeft, idle], (v) => {
+        debugger
+    })
+
+})
