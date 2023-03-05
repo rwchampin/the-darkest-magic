@@ -1,1 +1,0 @@
- mousePointLight = new THREE.PointLight(0xFF0000, 100, 100)

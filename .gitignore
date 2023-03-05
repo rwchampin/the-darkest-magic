@@ -4,3 +4,6 @@ dist
 .output
 .nuxt
 .env
+.lock
+.yaml
+.history

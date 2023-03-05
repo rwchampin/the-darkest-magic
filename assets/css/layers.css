@@ -1,0 +1,11 @@
+.layer-bg {
+    z-index: 100;
+}
+.canvas-parent.canvas-event-target {
+    z-index: 200;
+}
+
+.info-panel,
+.layer-ui {
+    z-index: 200;
+}

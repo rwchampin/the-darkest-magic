@@ -3,6 +3,7 @@
     --color-heading-light: #2d2d2d;
     --color-text-light: #222222;
     --color-background-light: #f5f5f5;
+    --background-gradient-light: linear-gradient(#f5f5f5, grey)
      --window-gradient-top:  linear-gradient(rgb(0, 0, 0) 10%, transparent 100%);
      --window-gradient-bottom: linear-gradient(transparent 0%, rgb(0, 0, 0) 90%);
         

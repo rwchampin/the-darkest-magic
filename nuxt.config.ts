@@ -5,39 +5,65 @@ import glsl from 'vite-plugin-glsl'
 
 export default defineNuxtConfig({
   debug: true,
+  dev: true,
   // ssr: false,
   // target: 'static',
-  // head: {
-  //   title: 'Ryan The Developer',
-  //   htmlAttrs: {
-  //     lang: 'en',
-  //   },
-  //   meta: [
-  //     { charset: 'utf-8' },
-  //     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-  //     { hid: 'description', name: 'description', content: 'Ryan The Developer' },
-  //     { hid: 'og:title', property: 'og:title', content: 'Ryan The Developer' },
-  //     { hid: 'og:description', property: 'og:description', content: 'Ryan The Developer' },
-  //     { hid: 'og:image', property: 'og:image', content: 'https://ryanthedev.com/public-assets/og-image.png' },
-  //     { hid: 'og:url', property: 'og:url', content: 'https://ryanthedev.com' },
-  //     { hid: 'og:type', property: 'og:type', content: 'website' },
-  //     { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
-  //     { hid: 'twitter:site', name: 'twitter:site', content: '@ryanthedev' },
-  //     { hid: 'twitter:creator', name: 'twitter:creator', content: '@ryanthedev' },
-  //     { hid: 'twitter:title', name: 'twitter:title', content: 'Ryan The Developer' },
-  //     { hid: 'twitter:description', name: 'twitter:description', content: 'Ryan The Developer' },
-  //     { hid: 'twitter:image', name: 'twitter:image', content: 'https://ryanthedev.com/public-assets/og-image.png' },
-  //   ],
-  //   link: [
-  //     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-  //     { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap' },
-  //   ],
-  // },
-
+  components: {
+    dirs: [
+      '~/components',
+      '~/components/buttons',
+    ],
+  },
+  imports: {
+    dirs: [
+      // Auto-import pinia stores defined in `~/stores`
+      'store',
+      'utils',
+      'core',
+      'composables',
+      'composables/darkMouse',
+      'geometry',
+      'materials',
+      'mesh',
+      'mouse-effects',
+      'particles',
+      'passes',
+      'shaders',
+    ]
+    
+  },
+  app: {
+    head: {
+      title: 'Ryan The Developer',
+      htmlAttrs: {
+        lang: 'en',
+      },
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'description', name: 'description', content: 'Ryan The Developer' },
+        { hid: 'og:title', property: 'og:title', content: 'Ryan The Developer' },
+        { hid: 'og:description', property: 'og:description', content: 'Ryan The Developer' },
+        { hid: 'og:image', property: 'og:image', content: 'https://ryanthedev.com/public-assets/og-image.png' },
+        { hid: 'og:url', property: 'og:url', content: 'https://ryanthedev.com' },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
+        { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+        { hid: 'twitter:site', name: 'twitter:site', content: '@ryanthedev' },
+        { hid: 'twitter:creator', name: 'twitter:creator', content: '@ryanthedev' },
+        { hid: 'twitter:title', name: 'twitter:title', content: 'Ryan The Developer' },
+        { hid: 'twitter:description', name: 'twitter:description', content: 'Ryan The Developer' },
+        { hid: 'twitter:image', name: 'twitter:image', content: 'https://ryanthedev.com/public-assets/og-image.png' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap' },
+      ],
+    },
+  },
   devServer: {
     https: {
-      key: './ssl/localhost-key.pem',
-      cert: './ssl/localhost.pem',
+      key: './ssl/example.com+5-key.pem',
+      cert: './ssl/example.com+5.pem',
     },
   },
   alias: {
@@ -66,10 +92,16 @@ export default defineNuxtConfig({
   modules: [
     '@kevinmarrec/nuxt-pwa',
     '@vueuse/nuxt',
-    '@unocss/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
   ],
+   pinia: {
+    autoImports: [
+      // automatically imports `defineStore`
+      'defineStore', // import { defineStore } from 'pinia'
+      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+    ],
+  },
   pwa: {
     workbox: {
       enabled: true,
@@ -98,10 +130,10 @@ export default defineNuxtConfig({
       orientation: 'portrait',
       start_url: '/',
       scope: '/',
+      id: '/',
     },
 
   },
-
   css: [
     '@/assets/css/base-dark.min.css',
     '@/assets/css/base-dark-buttons.min.css',
@@ -111,12 +143,11 @@ export default defineNuxtConfig({
     '@/assets/css/spacing-and-sizing.css',
     '@/assets/css/dark.css',
     '@/assets/css/light.css',
-    '@/assets/css/components.css',
-    '@/assets/css/elastic/button.css',
-    '@/assets/css/elastic/inputs.css',
-
+    // '@/assets/css/elastic/button.css',
+    // '@/assets/css/elastic/inputs.css',
+    '@/assets/css/layers.css',
     '@/assets/css/typography.css',
-    // '@/assets/css/error.css',
+    '@/assets/css/error.css',
     '@/assets/css/global.css',
     '@/assets/css/fonts.css',
   ],
@@ -140,13 +171,8 @@ export default defineNuxtConfig({
       }),
     ],
     ssr: {
-      noExternal: ['naive-ui', '@css-render/vue3-ssr'],
+      noExternal: ['naive-ui'],
     },
-    // build: {
-    //   rollupOptions: {
-    //     external: ['chalk'],
-    //   },
-    // },
   },
   experimental: {
     reactivityTransform: false,
@@ -156,19 +182,6 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
     preference: 'light',
-  },
-  // nitro: {
-  //   serveStatic: true,
-  // },
-  unocss: {
-    // presets
-    uno: true, // enabled `@unocss/preset-uno`
-    icons: true, // enabled `@unocss/preset-icons`
-    attributify: true, // enabled `@unocss/preset-attributify`,
-
-    // core options
-    shortcuts: [],
-    rules: [],
   },
   postcss: {
     plugins: {

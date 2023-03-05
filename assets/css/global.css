@@ -347,19 +347,7 @@ a,
 
 }
 
-#cursor {
-  position: fixed !important;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  background: red;
-  border-radius: 50%;
-  will-change: transform;
-  margin: -5px 0 0 -5px;
-  z-index: 12000 !important;
-  display: none;
-}
+ 
 .swatch-grid {
   display: absolute;
   gap: 10px;
